@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2019 a las 12:00:48
+-- Tiempo de generación: 11-10-2019 a las 10:54:18
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -34,7 +34,7 @@ CREATE TABLE `apuesta` (
   `Tipo` bit(1) NOT NULL,
   `Cuota` float NOT NULL,
   `Apostado` double NOT NULL,
-  `Id_Evento` int(11) NOT NULL,
+  `Id_Mercado` int(11) NOT NULL,
   `Email` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -42,7 +42,7 @@ CREATE TABLE `apuesta` (
 -- Volcado de datos para la tabla `apuesta`
 --
 
-INSERT INTO `apuesta` (`Id`, `Mercado`, `Tipo`, `Cuota`, `Apostado`, `Id_Evento`, `Email`) VALUES
+INSERT INTO `apuesta` (`Id`, `Mercado`, `Tipo`, `Cuota`, `Apostado`, `Id_Mercado`, `Email`) VALUES
 (1, 2.5, b'1', 1.34, 23, 1, 'anagarcia@gmail.com'),
 (2, 2.5, b'0', 1.34, 11, 1, 'anagarcia@gmail.com');
 
@@ -111,7 +111,7 @@ CREATE TABLE `mercado` (
 --
 
 INSERT INTO `mercado` (`Id`, `Mercado`, `Cuota Over`, `Cuota Under`, `Dinero Over`, `Dinero Under`, `Id_Evento`) VALUES
-(1, 1.5, 1.23, 2.12, 100, 100, 1),
+(1, 1.5, 1.21, 2.12, 100, 100, 1),
 (2, 2.5, 2.01, 1.84, 110, 150, 1);
 
 -- --------------------------------------------------------
@@ -146,7 +146,7 @@ INSERT INTO `usuario` (`Email`, `Nombre`, `Apellidos`, `Edad`, `Fondos`) VALUES
 --
 ALTER TABLE `apuesta`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `Id_Evento` (`Id_Evento`),
+  ADD KEY `Id_Evento` (`Id_Mercado`),
   ADD KEY `Email` (`Email`);
 
 --
@@ -183,7 +183,7 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  ADD CONSTRAINT `APUESTA_ibfk_1` FOREIGN KEY (`Id_Evento`) REFERENCES `evento` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `APUESTA_ibfk_1` FOREIGN KEY (`Id_Mercado`) REFERENCES `mercado` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `APUESTA_ibfk_2` FOREIGN KEY (`Email`) REFERENCES `usuario` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

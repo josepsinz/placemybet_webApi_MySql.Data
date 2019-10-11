@@ -1,1 +1,10 @@
 anotaciones placemybet repository
+
+
+- Modificación:
+
+Cambio de la relación Apuesta=>Evento por Apuesta=>Mercado
+
+Solo cambio del atributo Id_Evento en Apuestas por el Id_Mercado que recoge ahora de Mercado.
+
+Evento queda igual 
