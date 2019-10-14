@@ -26,4 +26,22 @@ namespace WebAPI.Models
         public int Id_Mercado { get; set; }
         public string Email { get; set; }
     }
+
+    public class ApuestaDTO
+    {
+        public ApuestaDTO(float mercado, bool tipo, float cuota, double apostado, string email)
+        {
+            Mercado = mercado;
+            Cuota = cuota;
+            Tipo = tipo;
+            Apostado = apostado;
+            Email = email;
+        }
+
+        public float Mercado { get; set; }
+        public bool Tipo { get; set; }
+        public float Cuota { get; set; }
+        public double Apostado { get; set; }
+        public string Email { get; set; }
+    }
 }

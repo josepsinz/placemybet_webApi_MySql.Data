@@ -46,5 +46,56 @@ namespace WebAPI.Models
             }
             
         }
+
+        internal List<EventoDTO> RetrieveDTO()
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand command = con.CreateCommand();
+            command.CommandText = "select * from evento";
+
+            try
+            {
+                con.Open();
+                MySqlDataReader res = command.ExecuteReader();
+
+                EventoDTO e = null;
+                List<EventoDTO> eventos = new List<EventoDTO>();
+                while (res.Read())
+                {
+                    Debug.WriteLine("Recuperado: " + res.GetInt32(0) + " " + res.GetDateTime(1) + " " + res.GetString(2) + " " + res.GetInt32(3) + " " + res.GetString(4) + " " + res.GetInt32(5));
+                    e = new EventoDTO(res.GetString(2), res.GetString(4));
+                    eventos.Add(e);
+                }
+
+                con.Close();
+                return eventos;
+            }
+            catch
+            {
+                Debug.WriteLine("Se ha producido un error de conexión");
+                return null;
+            }
+
+        }
+        /*
+        internal void Save(Evento e)
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand command = con.CreateCommand();
+            command.CommandText = "insert into evento (Id, Fecha, Local, Goles_Local, Visitante, Goles_Visitante) values ('" + e.Id + "','" + e.Fecha + "','" + e.Local + "','" + e.GolesLocal + "','" + e.Visitante + "','" + e.GolesVisitante + "');";
+            Debug.WriteLine("command " + command.CommandText);
+            try
+            {
+                con.Open();
+                command.ExecuteNonQuery();
+                con.Close();
+            } 
+            catch (MySqlException ex)
+            {
+                Debug.WriteLine("Se ha producido un error de conexión");
+            }
+        }
+        */
+
     }
 }

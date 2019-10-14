@@ -27,4 +27,18 @@ namespace WebAPI.Models
         public int Id_Evento { get; set; }
 
     }
+
+    public class MercadoDTO
+    {
+        public MercadoDTO(float tipoMercado, float cuotaOver, float cuotaUnder)
+        {
+            TipoMercado = tipoMercado;
+            CuotaOver = cuotaOver;
+            CuotaUnder = cuotaUnder;
+        }
+
+        public float TipoMercado { get; set; }
+        public float CuotaOver { get; set; }
+        public float CuotaUnder { get; set; }
+    }
 }

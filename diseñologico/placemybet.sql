@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2019 a las 10:54:18
+-- Tiempo de generación: 14-10-2019 a las 10:04:22
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -43,8 +43,11 @@ CREATE TABLE `apuesta` (
 --
 
 INSERT INTO `apuesta` (`Id`, `Mercado`, `Tipo`, `Cuota`, `Apostado`, `Id_Mercado`, `Email`) VALUES
-(1, 2.5, b'1', 1.34, 23, 1, 'anagarcia@gmail.com'),
-(2, 2.5, b'0', 1.34, 11, 1, 'anagarcia@gmail.com');
+(72, 1.5, b'1', 1.9, 10, 1, 'pepo@gmail.com'),
+(73, 2.5, b'0', 1.9, 5.45, 2, 'pepo@gmail.com'),
+(74, 2.5, b'0', 1.8509, 15.5, 2, 'neila@gmail.com'),
+(75, 1.5, b'0', 1.995, 2.5, 1, 'neila@gmail.com'),
+(76, 2.5, b'1', 2.09903, 19.5, 2, 'juan@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -77,18 +80,18 @@ CREATE TABLE `evento` (
   `Id` int(11) NOT NULL,
   `Fecha` datetime NOT NULL,
   `Local` varchar(20) NOT NULL,
-  `Goles Local` int(11) DEFAULT NULL,
+  `Goles_Local` int(11) DEFAULT NULL,
   `Visitante` varchar(20) NOT NULL,
-  `Goles Visitante` int(11) DEFAULT NULL
+  `Goles_Visitante` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `evento`
 --
 
-INSERT INTO `evento` (`Id`, `Fecha`, `Local`, `Goles Local`, `Visitante`, `Goles Visitante`) VALUES
-(1, '2019-09-25 00:00:00', 'Valencia', 2, 'Espanyol', 1),
-(2, '2019-09-29 00:00:00', 'Barcelona', 2, 'Leganés', 3);
+INSERT INTO `evento` (`Id`, `Fecha`, `Local`, `Goles_Local`, `Visitante`, `Goles_Visitante`) VALUES
+(1, '2019-09-25 00:00:00', 'Ontinyent', 2, 'Espanyol', 1),
+(2, '2019-09-29 00:00:00', 'Cáceres', 2, 'Leganés', 3);
 
 -- --------------------------------------------------------
 
@@ -99,10 +102,10 @@ INSERT INTO `evento` (`Id`, `Fecha`, `Local`, `Goles Local`, `Visitante`, `Goles
 CREATE TABLE `mercado` (
   `Id` int(11) NOT NULL,
   `Mercado` float NOT NULL,
-  `Cuota Over` float NOT NULL,
-  `Cuota Under` float NOT NULL,
-  `Dinero Over` double NOT NULL,
-  `Dinero Under` double NOT NULL,
+  `Cuota_Over` float NOT NULL,
+  `Cuota_Under` float NOT NULL,
+  `Dinero_Over` double NOT NULL,
+  `Dinero_Under` double NOT NULL,
   `Id_Evento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -110,9 +113,9 @@ CREATE TABLE `mercado` (
 -- Volcado de datos para la tabla `mercado`
 --
 
-INSERT INTO `mercado` (`Id`, `Mercado`, `Cuota Over`, `Cuota Under`, `Dinero Over`, `Dinero Under`, `Id_Evento`) VALUES
-(1, 1.5, 1.21, 2.12, 100, 100, 1),
-(2, 2.5, 2.01, 1.84, 110, 150, 1);
+INSERT INTO `mercado` (`Id`, `Mercado`, `Cuota_Over`, `Cuota_Under`, `Dinero_Over`, `Dinero_Under`, `Id_Evento`) VALUES
+(1, 1.5, 1.83523, 1.96951, 110, 102.5, 1),
+(2, 2.5, 1.91153, 1.88861, 119.5, 120.95, 1);
 
 -- --------------------------------------------------------
 
@@ -134,6 +137,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`Email`, `Nombre`, `Apellidos`, `Edad`, `Fondos`) VALUES
 ('anagarcia@gmail.com', 'Ana', 'García García', 23, 100),
+('juan@hotmail.com', 'Juan', 'Garcés', 23, 2300),
 ('neila@gmail.com', 'Neila', 'Deba Aguirre', 25, 205),
 ('pepo@gmail.com', 'Pepe', 'Ríos López', 30, 400);
 
@@ -174,6 +178,16 @@ ALTER TABLE `mercado`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`Email`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `apuesta`
+--
+ALTER TABLE `apuesta`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- Restricciones para tablas volcadas

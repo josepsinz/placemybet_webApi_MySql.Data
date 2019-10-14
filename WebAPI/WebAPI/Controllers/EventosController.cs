@@ -11,10 +11,11 @@ namespace WebAPI.Controllers
     public class EventosController : ApiController
     {
         // GET: api/Eventos
-        public IEnumerable<Evento> Get()
+        public IEnumerable<EventoDTO> Get()
         {
+
             var repo = new EventosRepositoy();
-            List<Evento> eventos = repo.Retrieve();
+            List<EventoDTO> eventos = repo.RetrieveDTO();
             return eventos;
         }
 
@@ -25,8 +26,9 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/Eventos
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Evento evento)
         {
+            
         }
 
         // PUT: api/Eventos/5
