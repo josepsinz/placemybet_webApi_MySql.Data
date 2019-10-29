@@ -14,7 +14,6 @@ namespace WebAPI.Controllers
         public IEnumerable<MercadoDTO> Get()
         {
             var repo = new MercadosRepository();
-            //List<Mercado> mercados = repo.Retrieve();
             List<MercadoDTO> mercados = repo.RetrieveDTO();
             return mercados;
         }
@@ -25,6 +24,14 @@ namespace WebAPI.Controllers
             var repo = new MercadosRepository();
             Mercado m = repo.Retrieve(id);
             return m;
+        }
+
+        // GET: api/Mercados?id_partido={id_partido}
+        public List<MercadoDTO> GetbyEvento(int id_partido)
+        {
+            var repo = new MercadosRepository();
+            List<MercadoDTO> mercados = repo.RetrieveDTO(id_partido);
+            return mercados;
         }
 
         // POST: api/Mercados

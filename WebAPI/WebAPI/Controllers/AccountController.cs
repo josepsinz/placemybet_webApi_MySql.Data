@@ -323,6 +323,8 @@ namespace WebAPI.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+            var repo = new UsuariosRepository();
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -336,7 +338,8 @@ namespace WebAPI.Controllers
             {
                 return GetErrorResult(result);
             }
-
+            Usuario u = new Usuario(model.Email,model.Nombre, model.Apellidos, model.Edad, 0, false, model.Password);
+            repo.Save(u);
             return Ok();
         }
 

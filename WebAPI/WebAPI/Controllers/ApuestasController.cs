@@ -25,6 +25,24 @@ namespace WebAPI.Controllers
             return "value";
         }
 
+        //GET: api/Apuestas?email={email}
+        public List<ApuestaDTObyEmail> GetByEmail(string email)
+        {
+            var repo = new ApuestasRepository();
+            List<ApuestaDTObyEmail> apuestas = repo.RetrieveDTO(email);
+            return apuestas;
+        }
+
+        [Authorize(Roles = "Admin")]
+        //GET: api/Apuestas?mercado={mercado}
+        public List<ApuestaDTO> GetByMercado(int mercado)
+        {
+            var repo = new ApuestasRepository();
+            List<ApuestaDTO> apuestas = repo.RetrieveDTO(mercado);
+            return apuestas;
+        }
+
+        [Authorize]
         // POST: api/Apuestas
         public void Post([FromBody]Apuesta apuesta)
         {
@@ -40,10 +58,7 @@ namespace WebAPI.Controllers
             {
                 emails.Add(u.Email);
             }
-
-            //comprobamos que el cliente existe (email), y que el mercado al que quiere apostar existe (Id_Mercado)
-            //solo necesitamos recoger desde la aplicación: el tipo(over/under), el mercado(id_mercado), la cantidad apostada(apostado) y el email del usuario
-            //la cuota y el mercado (1.5,2.5...) de al apuesta los recoge del Mercado al que se apuesta, y su Id se genera solo
+            
             if (emails.Contains(apuesta.Email))
             {
                 try

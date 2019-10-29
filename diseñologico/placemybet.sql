@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2019 a las 10:04:22
+-- Tiempo de generación: 29-10-2019 a las 16:16:01
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -47,7 +47,21 @@ INSERT INTO `apuesta` (`Id`, `Mercado`, `Tipo`, `Cuota`, `Apostado`, `Id_Mercado
 (73, 2.5, b'0', 1.9, 5.45, 2, 'pepo@gmail.com'),
 (74, 2.5, b'0', 1.8509, 15.5, 2, 'neila@gmail.com'),
 (75, 1.5, b'0', 1.995, 2.5, 1, 'neila@gmail.com'),
-(76, 2.5, b'1', 2.09903, 19.5, 2, 'juan@hotmail.com');
+(76, 2.5, b'1', 2.09903, 19.5, 2, 'juan@hotmail.com'),
+(77, 2.5, b'1', 1.91153, 29.5, 2, 'juan@hotmail.com'),
+(78, 1.5, b'0', 1.96951, 7.5, 1, 'juan@hotmail.com'),
+(79, 1.5, b'0', 1.9, 70.5, 1, 'neila@gmail.com'),
+(80, 1.5, b'0', 1.52895, 300.5, 1, 'neila@gmail.com'),
+(81, 1.5, b'0', 1.16726, 30000.5, 1, 'neila@gmail.com'),
+(82, 2.5, b'1', 1.72116, 50, 2, 'anagarcia@gmail.com'),
+(83, 2.5, b'0', 1.5, 500, 4, 'juan@hotmail.com'),
+(84, 3.5, b'1', 1.9, 20, 4, 'anagarcia@gmail.com'),
+(85, 3.5, b'0', 2.03571, 70, 4, 'nuevo@gmail.com'),
+(86, 3.5, b'0', 1.60143, 70, 4, 'pepo@gmail.com'),
+(87, 3.5, b'0', 1.41531, 70, 4, 'pepo@gmail.com'),
+(88, 3.5, b'0', 1.3119, 80, 4, 'pepo@gmail.com'),
+(89, 3.5, b'0', 1.23861, 180, 4, 'pepo@gmail.com'),
+(90, 3.5, b'1', 1.9, 1, 10, 'salva@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -90,8 +104,11 @@ CREATE TABLE `evento` (
 --
 
 INSERT INTO `evento` (`Id`, `Fecha`, `Local`, `Goles_Local`, `Visitante`, `Goles_Visitante`) VALUES
-(1, '2019-09-25 00:00:00', 'Ontinyent', 2, 'Espanyol', 1),
-(2, '2019-09-29 00:00:00', 'Cáceres', 2, 'Leganés', 3);
+(1, '2019-09-25 02:00:00', 'Ontinyent', 2, 'Espanyol', 1),
+(2, '2019-09-29 00:00:00', 'Otos', 2, 'Leganés', 80),
+(5, '2019-10-28 23:30:00', '', -1, '', -1),
+(45, '2019-10-28 22:34:00', '', -1, '', -1),
+(89, '2019-10-28 23:32:00', '', -1, '', -1);
 
 -- --------------------------------------------------------
 
@@ -114,8 +131,10 @@ CREATE TABLE `mercado` (
 --
 
 INSERT INTO `mercado` (`Id`, `Mercado`, `Cuota_Over`, `Cuota_Under`, `Dinero_Over`, `Dinero_Under`, `Id_Evento`) VALUES
-(1, 1.5, 1.83523, 1.96951, 110, 102.5, 1),
-(2, 2.5, 1.91153, 1.88861, 119.5, 120.95, 1);
+(1, 1.5, 264.199, 0.953428, 300, 30481.5, 1),
+(2, 2.5, 1.5274, 2.51304, 199, 120.95, 1),
+(4, 3.5, 5.50208, 1.14826, 120, 575, 2),
+(10, 3.5, 1.89059, 1.9095, 101, 100, 1);
 
 -- --------------------------------------------------------
 
@@ -128,18 +147,24 @@ CREATE TABLE `usuario` (
   `Nombre` varchar(20) NOT NULL,
   `Apellidos` varchar(20) NOT NULL,
   `Edad` int(3) NOT NULL,
-  `Fondos` double NOT NULL
+  `Fondos` double NOT NULL,
+  `Administrador` bit(1) NOT NULL,
+  `Password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`Email`, `Nombre`, `Apellidos`, `Edad`, `Fondos`) VALUES
-('anagarcia@gmail.com', 'Ana', 'García García', 23, 100),
-('juan@hotmail.com', 'Juan', 'Garcés', 23, 2300),
-('neila@gmail.com', 'Neila', 'Deba Aguirre', 25, 205),
-('pepo@gmail.com', 'Pepe', 'Ríos López', 30, 400);
+INSERT INTO `usuario` (`Email`, `Nombre`, `Apellidos`, `Edad`, `Fondos`, `Administrador`, `Password`) VALUES
+('anagarcia@gmail.com', 'Ana', 'García García', 23, 100, b'0', ''),
+('andres@mm.com', 'Andres', 'Alfonso', 55, 0, b'0', 'Asdf.1'),
+('juan@hotmail.com', 'Juan', 'Garcés', 23, 2300, b'0', ''),
+('neila@gmail.com', 'Neila', 'Deba Aguirre', 25, 205, b'0', ''),
+('nuevo@gmail.com', 'Felipe', 'Tomas', 29, 0, b'0', 'Abc123%'),
+('pepo@gmail.com', 'Pepe', 'Ríos López', 30, 400, b'0', ''),
+('rodrigo@mm.com', 'Rodrigo', 'Alberdi', 23, 50000, b'1', 'ABc123%'),
+('salva@gmail.com', 'Salvador', 'Sanchez Mira', 34, 0, b'1', '2aBC123%');
 
 --
 -- Índices para tablas volcadas
@@ -187,7 +212,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `apuesta`
 --
 ALTER TABLE `apuesta`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- Restricciones para tablas volcadas

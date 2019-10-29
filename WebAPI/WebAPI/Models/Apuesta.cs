@@ -44,4 +44,28 @@ namespace WebAPI.Models
         public double Apostado { get; set; }
         public string Email { get; set; }
     }
+
+    public class ApuestaDTObyEmail
+    {
+        public ApuestaDTObyEmail(int id_Evento, DateTime fecha, string local, string visitante, float mercado, bool tipo, float cuota, double apostado)
+        {
+            Id_Evento = id_Evento;
+            Fecha = fecha;
+            Local = local;
+            Visitante = visitante;
+            Mercado = mercado;
+            Tipo = tipo;
+            Cuota = cuota;
+            Apostado = apostado;
+        }
+
+        public int Id_Evento { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Local { get; set; }
+        public string Visitante { get; set; }
+        public float Mercado { get; set; }
+        public bool Tipo { get; set; }
+        public float Cuota { get; set; }
+        public double Apostado { get; set; }
+    }
 }

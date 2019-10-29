@@ -107,6 +107,35 @@ namespace WebAPI.Models
 
         }
 
+        internal List<MercadoDTO> RetrieveDTO(int id)
+        {
+            MySqlConnection con = Connect();
+            MySqlCommand command = con.CreateCommand();
+            command.CommandText = "select mercado.Mercado, mercado.Cuota_Over, mercado.Cuota_Under FROM mercado, evento WHERE evento.Id=mercado.Id_Evento AND evento.Id=@idevento";
+            command.Parameters.AddWithValue("@idevento", id);
+            try
+            {
+                con.Open();
+                MySqlDataReader res = command.ExecuteReader();
+                List<MercadoDTO> mercados = new List<MercadoDTO>();
+                while (res.Read())
+                {
+                    Debug.WriteLine("Recuperado: " + res.GetFloat(0) + " " + res.GetFloat(1) + " " + res.GetFloat(2));
+                    MercadoDTO m = new MercadoDTO(res.GetFloat(0), res.GetFloat(1), res.GetFloat(2));
+                    mercados.Add(m);
+                }
+
+                con.Close();
+                return mercados;
+            }
+            catch
+            {
+                Debug.WriteLine("Se ha producido un error de conexión");
+                return null;
+            }
+
+        }
+
         internal void Refresh(Mercado m, Apuesta a)
         {
             if (a.Tipo)
