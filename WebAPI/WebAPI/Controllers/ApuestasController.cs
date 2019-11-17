@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
             return apuestas;
         }
 
-        [Authorize]
+        //[Authorize]
         // POST: api/Apuestas
         public void Post([FromBody]Apuesta apuesta)
         {
